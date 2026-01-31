@@ -325,3 +325,22 @@ def display_contact_llm_response(llm_response):
         content["file_info_list"] = file_info_list
 
     return content
+
+
+def debug_llm_response(llm_response):
+    """
+    LLMレスポンスのデバッグ用関数
+
+    Args:
+        llm_response: LLMからの回答
+
+    Returns:
+        None
+    """
+    import json
+    # LLMレスポンスの内容をログに出力
+    with open("llm_response_debug.json", "w", encoding="utf-8") as debug_file:
+        json.dump(llm_response, debug_file, ensure_ascii=False, indent=4)
+
+# デバッグ用に呼び出し
+# debug_llm_response(llm_response)
