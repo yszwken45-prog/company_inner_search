@@ -3,6 +3,9 @@ streamlit
 langchain
 langchain-community
 langchain-openai
-langgraph
+langchain-text-splitters
 chromadb
 pydantic
+PyMuPDF
+python-docx
+docx2txt
