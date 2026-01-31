@@ -36,37 +36,14 @@ def initialize():
     """
     画面読み込み時に実行する初期化処理
     """
-    try:
-        # 初期化データの用意
-        initialize_session_state()
-        logging.info("initialize_session_state completed successfully.")
-    except Exception as e:
-        logging.error(f"initialize_session_state failed: {e}")
-        return
-
-    try:
-        # ログ出力用にセッションIDを生成
-        initialize_session_id()
-        logging.info("initialize_session_id completed successfully.")
-    except Exception as e:
-        logging.error(f"initialize_session_id failed: {e}")
-        return
-
-    try:
-        # ログ出力の設定
-        initialize_logger()
-        logging.info("initialize_logger completed successfully.")
-    except Exception as e:
-        logging.error(f"initialize_logger failed: {e}")
-        return
-
-    try:
-        # RAGのRetrieverを作成
-        initialize_retriever()
-        logging.info("initialize_retriever completed successfully.")
-    except Exception as e:
-        logging.error(f"initialize_retriever failed: {e}")
-        return
+    # 初期化データの用意
+    initialize_session_state()
+    # ログ出力用にセッションIDを生成
+    initialize_session_id()
+    # ログ出力の設定
+    initialize_logger()
+    # RAGのRetrieverを作成
+    initialize_retriever()
 
 
 def initialize_logger():
