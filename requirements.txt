@@ -8,3 +8,5 @@ pydantic<2.0.0
 PyMuPDF
 python-docx
 docx2txt
+beautifulsoup4
+lxml
