@@ -1,11 +1,10 @@
 python-dotenv
-streamlit
-langchain
-langchain-community
-langchain-openai
-langchain-text-splitters
-chromadb
-pydantic
+streamlit==1.35.0
+langchain==0.1.20
+langchain-community==0.0.38
+langchain-openai==0.1.7
+chromadb==0.5.0
+pydantic<2.10
 PyMuPDF
 python-docx
 docx2txt
