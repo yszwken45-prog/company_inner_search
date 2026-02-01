@@ -13,7 +13,8 @@ import constants as ct
 ############################################################
 # 関数定義
 ############################################################
-
+# ページ設定
+st.set_page_config(layout="wide")
 # def display_app_title():
     # """
     # タイトル表示
@@ -57,7 +58,7 @@ import constants as ct
 #         st.info("質問・要望に対して、社内文書の情報をもとに回答を得られます。")
 #         st.code("【入力例】\n人事部に所属している従業員情報を一覧化して", wrap_lines=True, language=None)
 # ページ設定
-st.set_page_config(layout="wide")
+# st.set_page_config(layout="wide")
 
 # --- サイドバーの実装 ---
 with st.sidebar:
