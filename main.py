@@ -11,6 +11,11 @@ from dotenv import load_dotenv
 import logging
 # streamlitアプリの表示を担当するモジュール
 import streamlit as st
+# ブラウザタブの表示文言を設定
+st.set_page_config(
+    page_title=ct.APP_NAME,
+    layout="wide"
+)
 # （自作）画面表示以外の様々な関数が定義されているモジュール
 import utils
 # （自作）アプリ起動時に実行される初期化処理が記述された関数
@@ -24,11 +29,7 @@ import constants as ct
 ############################################################
 # 2. 設定関連
 ############################################################
-# ブラウザタブの表示文言を設定
-st.set_page_config(
-    page_title=ct.APP_NAME,
-    layout="wide"
-)
+
 
 # ログ出力を行うためのロガーの設定
 logger = logging.getLogger(ct.LOGGER_NAME)
