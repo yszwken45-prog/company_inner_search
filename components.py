@@ -42,8 +42,8 @@ def display_initial_ai_message():
     """
     with st.chat_message("assistant"):
         # 「st.success()」とすると緑枠で表示される
-        st.markdown("こんにちは。私は社内文書の情報をもとに回答する生成AIチャットボットです。上記で利用目的を選択し、画面下部のチャット欄からメッセージを送信してください。")
-
+        st.markdown("こんにちは。私は社内文書の情報をもとに回答する生成AIチャットボットです。サイドバーで利用目的を選択し、画面下部のチャット欄からメッセージを送信してください。")
+        st.markdown("⚠️ 具体的に入力したほうが期待通りの回答を得やすいです。")
         # 「社内文書検索」の機能説明
         st.markdown("**【「社内文書検索」を選択した場合】**")
         # 「st.info()」を使うと青枠で表示される
@@ -335,30 +335,18 @@ def display_contact_llm_response(llm_response):
 
     return content
 
-
-
-# --- サイドバーの実装 ---
-with st.sidebar:
-    st.header("利用目的")
-    # ラジオボタン
-    display_select_mode()   
-
+def render_sidebar():
+    #  --- サイドバーの実装 ---
+    with st.sidebar:
+        st.header("利用目的")
+        # ラジオボタン
+        display_select_mode()   
 
     st.markdown("---") # 区切り線
 
     # 選択肢に応じた説明文の表示
     display_initial_ai_message()
+    return st.session_state.mode
 
-# --- メイン画面の実装 ---
-display_app_title()
-# st.title("社内情報特化型生成AI検索アプリ")
 
-# メッセージ表示エリア（イメージの緑色と黄色のボックスを再現）
-st.success("🤖 こんにちは。私は社内文書の情報をもとに回答する生成AIチャットボットです。サイドバーで利用目的を選択し、画面下部のチャット欄からメッセージを送信してください。")
-st.warning("⚠️ 具体的に入力したほうが期待通りの回答を得やすいです。")
 
-# チャット入力欄（画面下部に固定）
-# Streamlitの st.chat_input は自動的に画面下部に固定されます
-if prompt := st.chat_input("こちらからメッセージを送信してください。"):
-    # ここに検索やAIの回答ロジックを記述
-    st.write(f"「{mode}」モードで受付けました: {prompt}")
