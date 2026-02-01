@@ -335,8 +335,7 @@ def display_contact_llm_response(llm_response):
 
     return content
 
-# ページ設定
-st.set_page_config(layout="wide")
+
 
 # --- サイドバーの実装 ---
 with st.sidebar:
