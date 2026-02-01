@@ -38,11 +38,13 @@ def display_select_mode():
     """
     回答モードのラジオボタンを表示
     """
-    # 選択された値を戻り値として返すか、session_stateを更新
+    # 選択肢を横並びにしたい場合は st.columns を使ってもOK
+    # サイドバーの幅に合わせて label_visibility でスッキリさせます
     mode = st.radio(
-        label="回答モードを選択",
-        options=[ct.ANSWER_MODE_1, ct.ANSWER_MODE_2],
-        label_visibility="collapsed"
+        label="実行するモードを選択してください",
+        options=["社内文書検索", "社内問い合わせ"],
+        index=0,
+        key="mode_select"
     )
     return mode
   
@@ -71,23 +73,27 @@ def display_select_mode():
 #     st.code("【入力例】\n人事部に所属している従業員情報を一覧化して", wrap_lines=True, language=None)
 
 def render_sidebar():
-    # --- サイドバーの実装 ---
     with st.sidebar:
         st.header("利用目的")
+        
+        # 1. モード選択ラジオボタン
         selected_mode = display_select_mode()
         
-        st.markdown("---") # サイドバー内の区切り線
+        st.markdown("---")
+        st.subheader("💡 機能ガイド")
 
-        # 選択肢に応じた説明文をサイドバー（またはメイン）に表示
-        if selected_mode == ct.ANSWER_MODE_1:
-            st.markdown(f"**【「{ct.ANSWER_MODE_1}」を選択中】**")
-            st.info("入力内容と関連性が高い社内文書のありかを検索できます。")
-            st.code("【入力例】\n社員の育成方針に関するMTGの議事録", wrap_lines=True, language=None)
-            
-        elif selected_mode == ct.ANSWER_MODE_2:
-            st.markdown(f"**【「{ct.ANSWER_MODE_2}」を選択中】**")
-            st.info("質問・要望に対して、社内文書の情報をもとに回答を得られます。")
-            st.code("【入力例】\n人事部に所属している従業員情報を一覧化して", wrap_lines=True, language=None)
+        # 2. 両方の説明を常に表示
+        # --- モード1 ---
+        st.markdown("### 🔍 社内文書検索")
+        st.info("入力内容と関連性が高い社内文書のありかを検索できます。")
+        st.code("【入力例】\n社員の育成方針に関するMTGの議事録", wrap_lines=True, language=None)
+        
+        st.markdown(" ") # 少し隙間をあける
+
+        # --- モード2 ---
+        st.markdown("### 💬 社内問い合わせ")
+        st.info("質問・要望に対して、社内文書の情報をもとに回答を得られます。")
+        st.code("【入力例】\n人事部に所属している従業員情報を一覧化して", wrap_lines=True, language=None)
             
 
 
