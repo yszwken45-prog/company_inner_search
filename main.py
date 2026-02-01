@@ -11,6 +11,8 @@ from dotenv import load_dotenv
 import logging
 # streamlitアプリの表示を担当するモジュール
 import streamlit as st
+# （自作）変数（定数）がまとめて定義・管理されているモジュール
+import constants as ct
 # ブラウザタブの表示文言を設定
 st.set_page_config(
     page_title=ct.APP_NAME,
@@ -22,8 +24,7 @@ import utils
 from initialize import initialize
 # （自作）画面表示系の関数が定義されているモジュール
 import components as cn
-# （自作）変数（定数）がまとめて定義・管理されているモジュール
-import constants as ct
+
 
 
 ############################################################
