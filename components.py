@@ -21,42 +21,73 @@ def display_app_title():
     st.markdown(f"## {ct.APP_NAME}")
 
 
+# def display_select_mode():
+#     """
+#     回答モードのラジオボタンを表示
+#     """
+#     # 回答モードを選択する用のラジオボタンを表示
+#     col1, col2 = st.columns([100, 1])
+#     with col1:
+#         # 「label_visibility="collapsed"」とすることで、ラジオボタンを非表示にする
+#         st.session_state.mode = st.radio(
+#             label="",
+#             options=[ct.ANSWER_MODE_1, ct.ANSWER_MODE_2],
+#             label_visibility="collapsed"
+#         )
 def display_select_mode():
     """
     回答モードのラジオボタンを表示
     """
-    # 回答モードを選択する用のラジオボタンを表示
-    col1, col2 = st.columns([100, 1])
-    with col1:
-        # 「label_visibility="collapsed"」とすることで、ラジオボタンを非表示にする
-        st.session_state.mode = st.radio(
-            label="",
-            options=[ct.ANSWER_MODE_1, ct.ANSWER_MODE_2],
-            label_visibility="collapsed"
-        )
+    # 選択された値を戻り値として返すか、session_stateを更新
+    mode = st.radio(
+        label="回答モードを選択",
+        options=[ct.ANSWER_MODE_1, ct.ANSWER_MODE_2],
+        label_visibility="collapsed"
+    )
+    return mode
+  
+
+# def render_sidebar():
+#     #  --- サイドバーの実装 ---
+#     with st.sidebar:
+#         st.header("利用目的")
+#         # ラジオボタン
+#         display_select_mode()   
+
+#     st.markdown("---") # 区切り線
+
+#     # 選択肢に応じた説明文の表示
+#     # 「社内文書検索」の機能説明
+#     st.markdown("**【「社内文書検索」を選択した場合】**")
+#     # 「st.info()」を使うと青枠で表示される
+#     st.info("入力内容と関連性が高い社内文書のありかを検索できます。")
+#     # 「st.code()」を使うとコードブロックの装飾で表示される
+#     # 「wrap_lines=True」で折り返し設定、「language=None」で非装飾とする
+#     st.code("【入力例】\n社員の育成方針に関するMTGの議事録", wrap_lines=True, language=None)
+
+#     # 「社内問い合わせ」の機能説明
+#     st.markdown("**【「社内問い合わせ」を選択した場合】**")
+#     st.info("質問・要望に対して、社内文書の情報をもとに回答を得られます。")
+#     st.code("【入力例】\n人事部に所属している従業員情報を一覧化して", wrap_lines=True, language=None)
 
 def render_sidebar():
-    #  --- サイドバーの実装 ---
+    # --- サイドバーの実装 ---
     with st.sidebar:
         st.header("利用目的")
-        # ラジオボタン
-        display_select_mode()   
+        selected_mode = display_select_mode()
+        
+        st.markdown("---") # サイドバー内の区切り線
 
-    st.markdown("---") # 区切り線
-
-    # 選択肢に応じた説明文の表示
-    # 「社内文書検索」の機能説明
-    st.markdown("**【「社内文書検索」を選択した場合】**")
-    # 「st.info()」を使うと青枠で表示される
-    st.info("入力内容と関連性が高い社内文書のありかを検索できます。")
-    # 「st.code()」を使うとコードブロックの装飾で表示される
-    # 「wrap_lines=True」で折り返し設定、「language=None」で非装飾とする
-    st.code("【入力例】\n社員の育成方針に関するMTGの議事録", wrap_lines=True, language=None)
-
-    # 「社内問い合わせ」の機能説明
-    st.markdown("**【「社内問い合わせ」を選択した場合】**")
-    st.info("質問・要望に対して、社内文書の情報をもとに回答を得られます。")
-    st.code("【入力例】\n人事部に所属している従業員情報を一覧化して", wrap_lines=True, language=None)
+        # 選択肢に応じた説明文をサイドバー（またはメイン）に表示
+        if selected_mode == ct.ANSWER_MODE_1:
+            st.markdown(f"**【「{ct.ANSWER_MODE_1}」を選択中】**")
+            st.info("入力内容と関連性が高い社内文書のありかを検索できます。")
+            st.code("【入力例】\n社員の育成方針に関するMTGの議事録", wrap_lines=True, language=None)
+            
+        elif selected_mode == ct.ANSWER_MODE_2:
+            st.markdown(f"**【「{ct.ANSWER_MODE_2}」を選択中】**")
+            st.info("質問・要望に対して、社内文書の情報をもとに回答を得られます。")
+            st.code("【入力例】\n人事部に所属している従業員情報を一覧化して", wrap_lines=True, language=None)
             
 
 
