@@ -14,7 +14,6 @@ import constants as ct
 # 関数定義
 ############################################################
 # ページ設定
-st.set_page_config(layout="wide")
 def display_app_title():
     """
     タイトル表示
