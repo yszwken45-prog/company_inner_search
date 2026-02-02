@@ -11,6 +11,8 @@ from dotenv import load_dotenv
 import logging
 # streamlitアプリの表示を担当するモジュール
 import streamlit as st
+if "mode" not in st.session_state:
+    st.session_state.mode = "社内文書検索"
 # （自作）変数（定数）がまとめて定義・管理されているモジュール
 import constants as ct
 # ブラウザタブの表示文言を設定
