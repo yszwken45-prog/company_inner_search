@@ -84,14 +84,14 @@ def render_sidebar():
 
         # 2. 両方の説明を常に表示
         # --- モード1 ---
-        st.markdown("### 🔍 社内文書検索")
+        st.markdown("### 【「社内文書検索」を選択した場合】")
         st.info("入力内容と関連性が高い社内文書のありかを検索できます。")
         st.code("【入力例】\n社員の育成方針に関するMTGの議事録", wrap_lines=True, language=None)
         
         st.markdown(" ") # 少し隙間をあける
 
         # --- モード2 ---
-        st.markdown("### 💬 社内問い合わせ")
+        st.markdown("### 【「社内問い合わせ」を選択した場合】")
         st.info("質問・要望に対して、社内文書の情報をもとに回答を得られます。")
         st.code("【入力例】\n人事部に所属している従業員情報を一覧化して", wrap_lines=True, language=None)
             
@@ -103,8 +103,8 @@ def display_initial_ai_message():
     """
     with st.chat_message("assistant"):
         # 「st.success()」とすると緑枠で表示される
-        st.markdown("こんにちは。私は社内文書の情報をもとに回答する生成AIチャットボットです。サイドバーで利用目的を選択し、画面下部のチャット欄からメッセージを送信してください。")
-        st.markdown("⚠️ 具体的に入力したほうが期待通りの回答を得やすいです。")
+        st.success("こんにちは。私は社内文書の情報をもとに回答する生成AIチャットボットです。サイドバーで利用目的を選択し、画面下部のチャット欄からメッセージを送信してください。")
+        st.warning("⚠️ 具体的に入力したほうが期待通りの回答を得やすいです。")
         
 
 
