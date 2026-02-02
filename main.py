@@ -101,7 +101,7 @@ if chat_message:
     # 7-1. ユーザーメッセージの表示
     # ==========================================
     # ユーザーメッセージのログ出力
-    logger.info({"message": chat_message, "application_mode": st.session_state.mode})
+    logger.info({"message": chat_message, "application_mode": st.session_state.get("mode", "unknown")})
 
     # ユーザーメッセージを表示
     with st.chat_message("user"):
@@ -133,19 +133,19 @@ if chat_message:
             # ==========================================
             # モードが「社内文書検索」の場合
             # ==========================================
-            if st.session_state.mode == ct.ANSWER_MODE_1:
+            if st.session_state.get("mode", "unknown") == ct.ANSWER_MODE_1:
                 # 入力内容と関連性が高い社内文書のありかを表示
                 content = cn.display_search_llm_response(llm_response)
 
             # ==========================================
             # モードが「社内問い合わせ」の場合
             # ==========================================
-            elif st.session_state.mode == ct.ANSWER_MODE_2:
+            elif st.session_state.get("mode", "unknown") == ct.ANSWER_MODE_2:
                 # 入力に対しての回答と、参照した文書のありかを表示
                 content = cn.display_contact_llm_response(llm_response)
             
             # AIメッセージのログ出力
-            logger.info({"message": content, "application_mode": st.session_state.mode})
+            logger.info({"message": content, "application_mode": st.session_state.get("mode", "unknown")})
         except Exception as e:
             # エラーログの出力
             logger.error(f"{ct.DISP_ANSWER_ERROR_MESSAGE}\n{e}")
