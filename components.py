@@ -221,7 +221,7 @@ def display_search_llm_response(llm_response):
                 # ページ番号を取得
                 sub_page_number = document.metadata["page"]
                 # 「サブドキュメントのファイルパス」と「ページ番号」の辞書を作成
-                sub_choice ={"source": f"{sub_file_path} (P.{sub_page_number}+1)", "page_number": sub_page_number}
+                sub_choice ={"source": f"{sub_file_path} (P.{sub_page_number+1})", "page_number": sub_page_number}
             else:
                 # 「サブドキュメントのファイルパス」の辞書を作成
                 sub_choice = {"source": sub_file_path}
