@@ -139,7 +139,7 @@ def get_department_employees(department_name):
     # 必要な列を選択して統合
     combined_text = "\n".join(
         department_employees.apply(
-            lambda row: f"社員ID: {row['社員ID']}, 氏名: {row['氏名（フルネーム）']}, 役職: {row['役職']}, スキル: {row['スキルセット']}",
+            lambda row: f"社員情報: [社員ID: {row['社員ID']}, 氏名: {row['氏名（フルネーム）']}, 性別: {row['性別']}, 年齢: {row['年齢']}歳, 役職: {row['役職']}, スキル: {row['スキルセット']}, 保有資格: {row['保有資格']}]",
             axis=1
         )
     )
