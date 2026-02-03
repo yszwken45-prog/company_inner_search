@@ -14,6 +14,7 @@ from langchain_openai import ChatOpenAI
 from langchain.chains import create_history_aware_retriever, create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 import constants as ct
+import pandas as pd
 
 
 ############################################################
@@ -114,3 +115,33 @@ def get_llm_response(chat_message):
     st.session_state.chat_history.extend([HumanMessage(content=chat_message), llm_response["answer"]])
 
     return llm_response
+
+
+def get_department_employees(department_name):
+    """
+    指定された部署に所属している従業員情報を取得し、統合されたドキュメントを返す。
+
+    Args:
+        department_name (str): 部署名
+
+    Returns:
+        str: 統合された従業員情報のドキュメント
+    """
+    # CSVファイルのパス
+    csv_path = os.path.join("data", "社員について", "社員名簿.csv")
+
+    # CSVデータを読み込む
+    df = pd.read_csv(csv_path)
+
+    # 指定された部署に所属する従業員をフィルタリング
+    department_employees = df[df['部署'] == department_name]
+
+    # 必要な列を選択して統合
+    combined_text = "\n".join(
+        department_employees.apply(
+            lambda row: f"社員ID: {row['社員ID']}, 氏名: {row['氏名（フルネーム）']}, 役職: {row['役職']}, スキル: {row['スキルセット']}",
+            axis=1
+        )
+    )
+
+    return combined_text
