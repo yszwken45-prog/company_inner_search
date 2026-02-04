@@ -66,8 +66,8 @@ def initialize_logger():
     logger = logging.getLogger(ct.LOGGER_NAME)
 
     # すでにロガーにハンドラー（ログの出力先を制御するもの）が設定されている場合、同じログ出力が複数回行われないよう処理を中断する
-    if logger.hasHandlers():
-        return
+    # if logger.hasHandlers():
+    #     return
 
     # 1日単位でログファイルの中身をリセットし、切り替える設定
     log_handler = TimedRotatingFileHandler(
