@@ -36,8 +36,6 @@ import components as cn
 
 # ログ出力を行うためのロガーの設定
 logger = logging.getLogger(ct.LOGGER_NAME)
-logger = logging.getLogger(ct.LOGGER_NAME)
-logger.info("★ 強制テストログ ★")
 
 
 ############################################################
