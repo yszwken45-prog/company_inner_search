@@ -109,6 +109,8 @@ def initialize_logger():
     # ...（中略）...
     logger.addHandler(log_handler)
     logger.info("Logger setup complete!") # これがファイルに書き込まれるか
+    logger.info("--- アプリが起動しました ---")
+    
 
 
 def initialize_session_id():
