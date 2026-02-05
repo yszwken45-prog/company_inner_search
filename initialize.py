@@ -96,6 +96,9 @@ def initialize_logger():
     # ロガー（ログメッセージを実際に生成するオブジェクト）に追加してログ出力の最終設定
     logger.addHandler(log_handler)
 
+    # 【追記】設定が終わった直後に強制的に書き込む
+    logger.info("--- Logger Configuration Completed ---")
+
 
 # def initialize_logger():
 #     print("Log setup started") # ターミナルに表示されるか

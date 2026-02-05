@@ -41,21 +41,35 @@ logger = logging.getLogger(ct.LOGGER_NAME)
 ############################################################
 # 3. 初期化処理
 ############################################################
-try:
-    # 初期化処理（「initialize.py」の「initialize」関数を実行）
-    initialize()
-except Exception as e:
-    # エラーログの出力
-    logger.error(f"{ct.INITIALIZE_ERROR_MESSAGE}\n{e}")
-    # エラーメッセージの画面表示
-    st.error(utils.build_error_message(ct.INITIALIZE_ERROR_MESSAGE), icon=ct.ERROR_ICON)
-    # 後続の処理を中断
-    st.stop()
+# try:
+#     # 初期化処理（「initialize.py」の「initialize」関数を実行）
+#     initialize()
+# except Exception as e:
+#     # エラーログの出力
+#     logger.error(f"{ct.INITIALIZE_ERROR_MESSAGE}\n{e}")
+#     # エラーメッセージの画面表示
+#     st.error(utils.build_error_message(ct.INITIALIZE_ERROR_MESSAGE), icon=ct.ERROR_ICON)
+#     # 後続の処理を中断
+#     st.stop()
 
-# アプリ起動時のログファイルへの出力
-if not "initialized" in st.session_state:
-    st.session_state.initialized = True
-    logger.info(ct.APP_BOOT_MESSAGE)
+# # アプリ起動時のログファイルへの出力
+# if not "initialized" in st.session_state:
+#     st.session_state.initialized = True
+#     logger.info(ct.APP_BOOT_MESSAGE)
+
+# --- 3. 初期化処理 ---
+try:
+    if "initialized" not in st.session_state:
+        initialize()
+        st.session_state.initialized = True
+        # 初期化成功直後にロガーを取得して出力
+        log = logging.getLogger(ct.LOGGER_NAME)
+        log.info(ct.APP_BOOT_MESSAGE)
+except Exception as e:
+    # ここは logger が未設定の可能性があるので print も併用すると安全
+    print(f"Critical Error: {e}") 
+    st.error("初期化に失敗しました")
+    st.stop()
 
 
 ############################################################
