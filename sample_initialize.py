@@ -66,8 +66,8 @@ def initialize_logger():
     logger = logging.getLogger(ct.LOGGER_NAME)
 
     # すでにロガーにハンドラー（ログの出力先を制御するもの）が設定されている場合、同じログ出力が複数回行われないよう処理を中断する
-    # if logger.hasHandlers():
-    #     return
+    if logger.hasHandlers():
+        return
 
     # 1日単位でログファイルの中身をリセットし、切り替える設定
     log_handler = TimedRotatingFileHandler(
@@ -95,22 +95,6 @@ def initialize_logger():
     # 作成したハンドラー（ログ出力先を制御するオブジェクト）を、
     # ロガー（ログメッセージを実際に生成するオブジェクト）に追加してログ出力の最終設定
     logger.addHandler(log_handler)
-
-
-# def initialize_logger():
-#     print("Log setup started") # ターミナルに表示されるか
-#     os.makedirs(ct.LOG_DIR_PATH, exist_ok=True)
-#     logger = logging.getLogger(ct.LOGGER_NAME)
-
-#     if logger.hasHandlers():
-#         print("Logger already has handlers") # ここで終わっていないか
-#         return
-    
-#     # ...（中略）...
-#     logger.addHandler(log_handler)
-#     logger.info("Logger setup complete!") # これがファイルに書き込まれるか
-#     logger.info("--- アプリが起動しました ---")
-
 
 
 def initialize_session_id():
