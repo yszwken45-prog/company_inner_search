@@ -30,8 +30,8 @@ SPINNER_TEXT = "回答生成中..."
 # ==========================================
 # ログ出力系
 # ==========================================
-# LOG_DIR_PATH = "C:\\company_inner_search_app\\company_inner_search\\logs"
-LOG_DIR_PATH = r"C:\company_inner_search_app\company_inner_search\logs"
+LOG_DIR_PATH = "./logs"
+# LOG_DIR_PATH = r"C:\company_inner_search_app\company_inner_search\logs"
 LOGGER_NAME = "ApplicationLog"
 LOG_FILE = "application.log"
 APP_BOOT_MESSAGE = "アプリが起動されました。"
